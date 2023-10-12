@@ -14,7 +14,7 @@ public class MemoryGameGUI extends JFrame {
     private int firstCardIndex;
     private int secondCardIndex;
 
-    public int gridSize;
+    private int gridSize;
 
     public MemoryGameGUI() {
         setTitle("Memory Game");
@@ -50,6 +50,7 @@ public class MemoryGameGUI extends JFrame {
             numRows = 4;
             numCols = 3;
         }
+        cardButtons = new JButton[gridSize];
 
         JPanel cardPanel = new JPanel(new GridLayout(numRows, numCols));
 
@@ -69,11 +70,11 @@ public class MemoryGameGUI extends JFrame {
         }
 
         add(cardPanel);
+
     }
     private static int gridSize() {
-        Scanner scanner = new Scanner(System.in);
         int gridSize = 0;
-
+        Scanner scanner = new Scanner(System.in);
         while (gridSize != 12 && gridSize != 24) {
             System.out.println("Select Grid Size (12 or 24): ");
             gridSize = scanner.nextInt();
@@ -81,35 +82,35 @@ public class MemoryGameGUI extends JFrame {
                 System.out.println("Invalid choice. Please enter 12 or 24.");
             }
         }
-
+System.out.println(gridSize);
         return gridSize;
     }
-    public MemoryGameGUI(int gridSize){
-        setTitle("Memory Game");
-        setSize(400, 400);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        cardSymbols = new ArrayList<>();
-        cardSymbols.add("A");
-        cardSymbols.add("B");
-        cardSymbols.add("C");
-        cardSymbols.add("D");
-        cardSymbols.add("E");
-        cardSymbols.add("F");
-        cardSymbols.add("G");
-        cardSymbols.add("H");
-
-        // Duplicate symbols to create matching pairs
-        cards = new ArrayList<>(cardSymbols);
-        cards.addAll(cardSymbols);
-
-        Collections.shuffle(cards);
-
-        JPanel cardPanel2 = new JPanel(new GridLayout(6,4));
-        JPanel cardPanel = new JPanel(new GridLayout(4, 3));
-        this.gridSize = gridSize;
-        this.cardButtons = new JButton[12];
-    }
+////    public MemoryGameGUI (int gridSize){
+////        this.gridSize = gridSize;
+////        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+////
+////        cardSymbols = new ArrayList<>();
+////        cardSymbols.add("A");
+////        cardSymbols.add("B");
+////        cardSymbols.add("C");
+////        cardSymbols.add("D");
+////        cardSymbols.add("E");
+////        cardSymbols.add("F");
+////        cardSymbols.add("G");
+////        cardSymbols.add("H");
+////
+////
+////        cards = new ArrayList<>(cardSymbols);
+////        cards.addAll(cardSymbols);
+////
+////        Collections.shuffle(cards);
+//
+//
+//
+//
+//        this.gridSize = gridSize;
+//    }
     //Handle card clicks.
     private void handleCardClick(int index) {
         if (cardButtons[index].getText().equals("?")) {
@@ -139,6 +140,7 @@ public class MemoryGameGUI extends JFrame {
                     timer.start();
                 }
                 firstCardIndex = -1;
+
             }
         }
     }
@@ -149,7 +151,7 @@ public class MemoryGameGUI extends JFrame {
             @Override
             public void run() {
                 int gridSize = gridSize();
-                new MemoryGameGUI(gridSize).setVisible(true);
+                new MemoryGameGUI().setVisible(true);
             }
         });
     }
