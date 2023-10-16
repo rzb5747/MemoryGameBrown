@@ -34,21 +34,8 @@ public class PictureMemoryGame extends JFrame {
         setSize(1500, 1000);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        imagePaths = new ArrayList<>();
-        cardImages = new ArrayList<>();
 
 
-
-        System.out.println(imagePaths);
-
-        Collections.shuffle(imagePaths);
-
-        System.out.println(imagePaths);
-
-
-        for (String imagePath : imagePaths) {
-            cardImages.add("");
-        }
 
 
         int numRows = 0;
@@ -172,8 +159,8 @@ Collections.shuffle(imagePaths);
         roundLabel = new JLabel("Round: " + roundCount);
         add(roundLabel, BorderLayout.NORTH);
 
-        roundStartTime = 0;
-        totalRoundTime = 0;
+//        roundStartTime = 0;
+//        totalRoundTime = 0;
 
         roundTimeLabel = new JLabel("Round Time: 0 seconds" );
         add(roundTimeLabel, BorderLayout.EAST);
@@ -241,8 +228,10 @@ Collections.shuffle(imagePaths);
                                 startNewGame();
                             }else {JOptionPane.showMessageDialog(null, "You won! ");
                                 roundCount = 0;
+                                gameDuration = 300;
                                 updateRoundLabel();
                                 resetGame();
+                                totalRoundTime = 0;
 
 
                             }
@@ -292,7 +281,7 @@ Collections.shuffle(imagePaths);
             }
         }
 
-        System.out.println(gridSize);
+
         return gridSize;
     }
     public static void main(String[] args) {
